@@ -5,16 +5,16 @@ class Solution(object):
         :type sum: int
         :rtype: int
         """
-        def RootPathSum(root, sum):
-            if root==None:
+        def RootPathSum(root, val):
+            if not root:
                 return 0
-            res=(sum==root.val)
-            res+=RootPathSum(root.left,sum-root.val)
-            res+=RootPathSum(root.right,sum-root.val)
+            res=(val==root.val)
+            res+=RootPathSum(root.left,val-root.val)
+            res+=RootPathSum(root.right,val-root.val)
             return res
-        if root==None:
+        if not root:
             return 0
         ans=RootPathSum(root,sum)
-        ans+=RootPathSum(root.left,sum)
-        ans+=RootPathSum(root.right,sum)
+        ans+=self.pathSum(root.left,sum)
+        ans+=self.pathSum(root.right,sum)
         return ans
